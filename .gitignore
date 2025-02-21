@@ -10,4 +10,4 @@ dist
 .crates
 .bin
 clients/js/output.json
-coverage
+coverage 
