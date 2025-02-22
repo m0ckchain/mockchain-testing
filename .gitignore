@@ -11,3 +11,4 @@ dist
 .bin
 clients/js/output.json
 coverage 
+.env

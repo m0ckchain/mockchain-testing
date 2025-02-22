@@ -7,10 +7,16 @@ import {
   createMint,
 } from "@solana/spl-token";
 import fetch from "node-fetch";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 test("getAccountInfo", async () => {
-  let res = await fetch("https://rpc.mockchain.app/blockchains", {
+  let res = await fetch("http://localhost:8080/blockchains", {
     method: "POST",
+    headers: {
+      api_key: process.env.API_KEY!,
+    },
   });
 
   expect(res.status).toBe(200);
@@ -23,6 +29,9 @@ test("getAccountInfo", async () => {
   );
   fetch(url, {
     method: "DELETE",
+    headers: {
+      api_key: process.env.API_KEY!,
+    },
   });
 
   expect(programAccountInfo).not.toBeNull();
@@ -34,6 +43,9 @@ test("getAccountInfo", async () => {
 test("mint", async () => {
   let res = await fetch("http://localhost:8080/blockchains", {
     method: "POST",
+    headers: {
+      api_key: process.env.API_KEY!,
+    },
   });
 
   expect(res.status).toBe(200);
@@ -68,5 +80,8 @@ test("mint", async () => {
 
   fetch(url, {
     method: "DELETE",
+    headers: {
+      api_key: process.env.API_KEY!,
+    },
   });
 }, 100000);
